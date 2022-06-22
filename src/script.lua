@@ -1,11 +1,11 @@
 --		Color Palette Plugin
 --		By InstantStudio
 
---		Build: Offical Release 1.05.0
+--		Build: Offical Release 1.06.0
 
 function Run(plugin)
 	local MainUi = plugin:CreateDockWidgetPluginGui(
-		"GuiColorPalateInstant",
+		"GuiColorPalatteInstant",
 		DockWidgetPluginGuiInfo.new(
 			Enum.InitialDockState.Float,
 			true,
@@ -16,37 +16,37 @@ function Run(plugin)
 			200
 		)
 	)
-	local PluginToolbar = plugin:CreateToolbar("Ui Palate")
-	local PluginButton = PluginToolbar:CreateButton("OpenPalateUi", "Open", "", "Open")
-	local PluginButtonNewColor = PluginToolbar:CreateButton("NewPalateUi", "New", "", "New")
+	local PluginToolbar = plugin:CreateToolbar("Ui Palatte")
+	local PluginButton = PluginToolbar:CreateButton("OpenPalatteUi", "Open", "", "Open")
+	local PluginButtonNewColor = PluginToolbar:CreateButton("NewPalatteUi", "New", "", "New")
 	local Ui = {
-		["Palate"] = script.Parent.Ui.ImageButton;
+		["Palatte"] = script.Parent.Ui.ImageButton;
 		["Main"] = script.Parent.Ui.ScrollingFrame;
 		["Button"] = script.Parent.Ui.TextButton;
 	}
 	
-	Ui.Button.version.Text = "<font size=\"15\">" .. tostring(1.05) .. "</font>"
+	Ui.Button.version.Text = "<font size=\"15\">" .. tostring(1.06) .. "</font>"
 	
 	local ActiveUiMain = Ui.Main:Clone()
 	local AcitveUiButton = Ui.Button:Clone()
 	ActiveUiMain.Parent = MainUi
 	AcitveUiButton.Parent = MainUi
 
-	local PalateFolder = game:GetService("StarterGui"):FindFirstChild("ColorPalate") or Instance.new("Folder")
-	if PalateFolder.Name ~= "ColorPalate" then
-		PalateFolder.Name = "ColorPalate"
-		PalateFolder.Parent = game:GetService("StarterGui")
+	local PalatteFolder = game:GetService("StarterGui"):FindFirstChild("ColorPalatte") or Instance.new("Folder")
+	if PalatteFolder.Name ~= "ColorPalatte" then
+		PalatteFolder.Name = "ColorPalatte"
+		PalatteFolder.Parent = game:GetService("StarterGui")
 	end
 
-	local function NewColorPalate()		
+	local function NewColorPalatte()		
 		local SelectionService = game:GetService("Selection")
-		local newColorInstance = Ui.Palate:Clone()
+		local newColorInstance = Ui.Palatte:Clone()
 		newColorInstance.Parent = ActiveUiMain
-		newColorInstance.LayoutOrder = #PalateFolder:GetChildren()*-1
+		newColorInstance.LayoutOrder = #PalatteFolder:GetChildren()*-1
 
 		local newDataColorInstance = Instance.new("Color3Value")
-		newDataColorInstance.Name = "Color" .. tostring(#PalateFolder:GetChildren()+1)
-		newDataColorInstance.Parent = PalateFolder
+		newDataColorInstance.Name = "Color" .. tostring(#PalatteFolder:GetChildren()+1)
+		newDataColorInstance.Parent = PalatteFolder
 		SelectionService:Set({newDataColorInstance})
 
 		local pt = {
@@ -131,10 +131,10 @@ function Run(plugin)
 	end
 	
 	AcitveUiButton.MouseButton1Click:Connect(function()
-		NewColorPalate()
+		NewColorPalatte()
 	end)
 	PluginButtonNewColor.Click:Connect(function()
-		NewColorPalate()
+		NewColorPalatte()
 	end)
 	PluginButton.Click:Connect(function()
 		if PluginButton.Name == "Open" then
